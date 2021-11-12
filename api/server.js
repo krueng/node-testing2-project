@@ -1,6 +1,6 @@
 const express = require("express");
 
-const employees = require("model.js");
+const employees = require("./employees/employees-model");
 
 const server = express();
 
@@ -10,7 +10,7 @@ server.get("/", (req, res) => {
   res.status(200).json({ api: "up" });
 });
 
-server.get("/employees", (req, res) => {
+server.get("/api/employees", (req, res) => {
   employees.getAll()
     .then(employees => {
       res.status(200).json(employees);
@@ -20,21 +20,21 @@ server.get("/employees", (req, res) => {
     });
 });
 
-server.get("/employees/:id", async (req, res) => {
+server.get("/api/employees/:id", async (req, res) => {
   res.json(await employees.getById(req.params.id))
 });
 
-server.post("/employees", async (req, res) => {
+server.post("/api/employees", async (req, res) => {
   res
   .status(201)
   .json(await employees.insert(req.body))
 });
 
-server.delete("/employees/:id", (req, res) => {
+server.delete("/api/employees/:id", async (req, res) => {
   res.end()
 });
 
-server.put("/employees/:id", (req, res) => {
+server.put("/api/employees/:id", (req, res) => {
   res.end()
 });
 

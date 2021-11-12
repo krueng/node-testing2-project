@@ -8,9 +8,8 @@
     "rollback": "knex migrate:rollback",
     "migrate": "knex migrate:latest",
     "seed": "knex seed:run",
-    "ketchup": "git fetch && git reset --hard origin/lecture",
     "resetdb": "npm run rollback && npm run migrate && npm run seed",
-    "test": "cross-env NODE_ENV=testing jest --runInBand"
+    "test": "cross-env NODE_ENV=testing jest --runInBand  --watch"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
